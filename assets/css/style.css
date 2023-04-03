@@ -1,0 +1,21 @@
+/* TODO: HEADER/HERO SECTION */
+body {
+    background-color:beige;
+}
+
+/* TODO: Search City Section  */
+
+
+ /* TODO: Section for Current City 
+ City | Temp: --°F | Wind: --mph | Humidity: --% | CurrentDate
+
+ TODO: Section for 5-day forecast
+ /* cards for each date with date, weather icon, temp wind and humidity  */
+
+.card {
+    background-color:white;
+
+}
+
+@media screen and (min-width: 768px)
+/* TODO: Section for historyLocations, when you click on historyLocations button, that locations information replaces currentLocation   */ */
