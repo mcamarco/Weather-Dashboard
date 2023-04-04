@@ -1,32 +1,24 @@
+
 console.log(window);
+// Set Variables
 var APIKey = "383165bf31a4af053f333f929519989c";
-var city = "Philadelphia";
+var city;
+
+// for testing purposes
+ city = "philadelphia";
+ console.log("CITY NAME: " + city);
+//  API Query
 var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+console.log("API QUERY: " + queryURL);
 
-
+// call API
 fetch(queryURL)
     .then(function (response) {
         console.log(response)
         return response.json()
     })
 
-function getApi(queryURL) {
-    fetch(queryURL)
-        .then(function (response) {
-            console.log(response);
-            if (response.status === 200) {
-                responseText.textContent = response.status;
-            }
-            return response.json();
-        });
-};
+// parse data from Array
 
-let city = function (pos) {
-   let lat = pos.coords.latitude;
-    let long = pos.coords.longitude;
-    getForecast(lat, long);
-}
+// set data to points on HTML
 
-let getForecast = function(lat, long) {
-    let URL = ""
-}

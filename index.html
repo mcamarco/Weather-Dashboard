@@ -6,21 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <link rel="googlefonts" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
 </head>
 
 <body class="flex-column min-100-vh">
-    <section class="hero">
+    <header class="hero">
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">Weather Dashboard</h1>
             </div>
         </div>
-    </section>
+    </header>
 
     <section class="flex-row justify-space-between">
-        <div class="col-12 col-md-4">
-            <div class="card" id="col1">
+        <div class="card">
+            <div class="col-12 col-md-4">
+
                 <h3 class="card-header text-uppercase">Search By City Name</h3>
                 <form id="user-form" class="card-body">
                     <label class="form-label" for="cityName">City Name</label>
@@ -30,45 +33,45 @@
             </div>
 
             <!-- TODO: Section for historyLocations, when you click on historyLocations button, that locations information replaces currentLocation  -->
-            <div class="card" id="col1">
-                <h3 class="card-header text-uppercase"> Recently Searched </h3>
-                <div id="language-buttons" class="card-body">
-                    <p> class = locationHistory </p>
-                    <button data-language="CityName1" class="btn">CityName1</button>
-                    <button data-language="CityName2" class="btn">CityName2</button>
-                    <button data-language="CityName3" class="btn">CityName3</button>
-                </div>
-            </div>
-
-
-
-            <!-- TODO: Section for Current City -->
-            <!-- City | Temp: --°F | Wind: --mph | Humidity: --% | CurrentDate-->
-            <div class="card">
-                <h3 class="card-header text-uppercase"> cityName = Philadelphia - dateTime = today </h3>
-                <p> [weatherIcon] | Temp: --°F | Wind: --mph | Humidity: --% |
-                </p>
-            </div>
-
-
-            <!-- TODO: Section for 5-day forecast -->
-            <!-- cards for each date with date, weather icon, temp wind and humidity -->
-            <div class="card">
-                <h3 class="card-header text-uppercase"> 5-Day Forecast </h3>
-                <p> card 1 = [weatherIcon] | Temp: --°F | Wind: --mph | Humidity: --% |
-                </p>
-                <p> card 2 = [weatherIcon] | Temp: --°F | Wind: --mph | Humidity: --% |
-                </p>
-                <p> card 3 = [weatherIcon] | Temp: --°F | Wind: --mph | Humidity: --% |
-                </p>
-                <p> card 4 = [weatherIcon] | Temp: --°F | Wind: --mph | Humidity: --% |
-                </p>
-                <p> card 5 = [weatherIcon] | Temp: --°F | Wind: --mph | Humidity: --% |
-                </p>
+            <div class="col-12 col-md-4"></div>
+            <h3 class="card-header text-uppercase"> Recently Searched </h3>
+            <div id="language-buttons" class="card-body">
+                <p> class = locationHistory </p>
+                <button data-language="CityName1" class="btn">CityName1</button>
+                <button data-language="CityName2" class="btn">CityName2</button>
+                <button data-language="CityName3" class="btn">CityName3</button>
             </div>
         </div>
+
+
+
+        <!-- TODO: Section for Current City -->
+        <!-- City | Temp: --°F | Wind: --mph | Humidity: --% | CurrentDate-->
+        <div class="card">
+            <h3 class="card-header text-uppercase"> cityName = Philadelphia - dateTime = today </h3>
+            <p> [weatherIcon] | Temp: --°F | Wind: --mph | Humidity: --% |
+            </p>
+        </div>
+
+
+        <!-- TODO: Section for 5-day forecast -->
+        <!-- cards for each date with date, weather icon, temp wind and humidity -->
+        <div class="card">
+            <h3 class="card-header text-uppercase"> 5-Day Forecast </h3>
+            <p id="1"> card 1 = [weatherIcon] | Temp: --°F | Wind: --mph | Humidity: --% |
+            </p>
+            <p id=2> card 2 = [weatherIcon] | Temp: --°F | Wind: --mph | Humidity: --% |
+            </p>
+            <p> card 3 = [weatherIcon] | Temp: --°F | Wind: --mph | Humidity: --% |
+            </p>
+            <p> card 4 = [weatherIcon] | Temp: --°F | Wind: --mph | Humidity: --% |
+            </p>
+            <p> card 5 = [weatherIcon] | Temp: --°F | Wind: --mph | Humidity: --% |
+            </p>
+        </div>
+        </div>
         <script src="./assets/javascript/script.js"></script>
-    </main>
+        </main>
 </body>
 
 <footer>
