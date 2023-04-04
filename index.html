@@ -37,9 +37,8 @@
             <h3 class="card-header text-uppercase"> Recently Searched </h3>
             <div id="language-buttons" class="card-body">
                 <p> class = locationHistory </p>
-                <button data-language="CityName1" class="btn">CityName1</button>
-                <button data-language="CityName2" class="btn">CityName2</button>
-                <button data-language="CityName3" class="btn">CityName3</button>
+                <button data-language="CityName1" class="btn"> Historical City Name</button>
+             
             </div>
         </div>
 
@@ -49,8 +48,10 @@
         <!-- City | Temp: --°F | Wind: --mph | Humidity: --% | CurrentDate-->
         <div class="card">
             <h3 class="card-header text-uppercase"> cityName = Philadelphia - dateTime = today </h3>
-            <p> [weatherIcon] | Temp: --°F | Wind: --mph | Humidity: --% |
-            </p>
+            <p id = "currentCards"> [weatherIcon]   </p>
+            <p id = "currentCards"> Temp: --°F      </p>
+            <p id = "currentCards"> Wind: --mph |   </p>
+            <p id = "currentCards"> Humidity: --%  </p>
         </div>
 
 
@@ -58,16 +59,12 @@
         <!-- cards for each date with date, weather icon, temp wind and humidity -->
         <div class="card">
             <h3 class="card-header text-uppercase"> 5-Day Forecast </h3>
-            <p id="1"> card 1 = [weatherIcon] | Temp: --°F | Wind: --mph | Humidity: --% |
-            </p>
-            <p id=2> card 2 = [weatherIcon] | Temp: --°F | Wind: --mph | Humidity: --% |
-            </p>
-            <p> card 3 = [weatherIcon] | Temp: --°F | Wind: --mph | Humidity: --% |
-            </p>
-            <p> card 4 = [weatherIcon] | Temp: --°F | Wind: --mph | Humidity: --% |
-            </p>
-            <p> card 5 = [weatherIcon] | Temp: --°F | Wind: --mph | Humidity: --% |
-            </p>
+            <p>[weatherIcon] | Temp: --°F | Wind: --mph | Humidity: --% |</p>
+            <p id = "days"> Day 1  </p>
+            <p id = "days"> Day 2 </p>
+            <p id = "days"> Day 3 </p>
+            <p id = "days"> Day 4 </p>
+            <p id = "days"> Day 5 </p>
         </div>
         </div>
         <script src="./assets/javascript/script.js"></script>

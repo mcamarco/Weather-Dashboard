@@ -1,7 +1,7 @@
 :root {
     --primary: white;
     --secondary: #fb9f87;
-    --tertiary: #094479;
+    --tertiary: rgb(97, 177, 188);
     --light-dark: #8e7578;
     --dark: black;
     --border-radius: 0.3rem;
@@ -16,7 +16,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Lora', serif;
-    color: var(--dark);
+    color: black;
     line-height: 1.5;
     font-size: 16px;
 }
@@ -104,6 +104,19 @@ main {
     padding: 2.5%;
 }
 
+#days {
+    margin: 10px;
+    padding: 10px;
+    border: 3px solid var(--dark);
+    border-radius: var(--border-radius);
+}
+
+#currentCards {
+    margin: 10px;
+    padding: 10px;
+    border: 3px solid var(--dark);
+    border-radius: var(--border-radius);
+}
 /* 
 
 /* FORM SECTION */

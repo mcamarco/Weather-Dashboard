@@ -7,6 +7,7 @@ var city;
 // for testing purposes
  city = "philadelphia";
  console.log("CITY NAME: " + city);
+
 //  API Query
 var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
 console.log("API QUERY: " + queryURL);
