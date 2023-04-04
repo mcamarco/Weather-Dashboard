@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="googlefonts" href="https://fonts.googleapis.com"/>
 </head>
 
 <body class="flex-column min-100-vh">
@@ -19,7 +20,7 @@
 
     <section class="flex-row justify-space-between">
         <div class="col-12 col-md-4">
-            <div class="card">
+            <div class="card" id="col1">
                 <h3 class="card-header text-uppercase">Search By City Name</h3>
                 <form id="user-form" class="card-body">
                     <label class="form-label" for="cityName">City Name</label>
@@ -29,7 +30,7 @@
             </div>
 
             <!-- TODO: Section for historyLocations, when you click on historyLocations button, that locations information replaces currentLocation  -->
-            <div class="card">
+            <div class="card" id="col1">
                 <h3 class="card-header text-uppercase"> Recently Searched </h3>
                 <div id="language-buttons" class="card-body">
                     <p> class = locationHistory </p>

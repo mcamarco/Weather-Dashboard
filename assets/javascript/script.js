@@ -2,10 +2,11 @@ console.log(window);
 var APIKey = "383165bf31a4af053f333f929519989c";
 var city = "Philadelphia";
 var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
-var responseText = document.getElementById('response-text');
+
 
 fetch(queryURL)
     .then(function (response) {
+        console.log(response)
         return response.json()
     })
 
@@ -20,6 +21,12 @@ function getApi(queryURL) {
         });
 };
 
-console.log(response);
-//   getApi(requestUrl);
+let city = function (pos) {
+   let lat = pos.coords.latitude;
+    let long = pos.coords.longitude;
+    getForecast(lat, long);
+}
 
+let getForecast = function(lat, long) {
+    let URL = ""
+}
