@@ -52,7 +52,7 @@ main {
     color: var(--primary);
     border: none;
     outline: none;
-    background-color: var(--tertiary);
+    background-color: blueviolet;
     box-shadow: 3px 3px var(--dark);
     transform: translate(-1px, -1px);
 }
