@@ -24,21 +24,21 @@
         <div class="card">
             <div class="col-12 col-md-4">
 
-                <h3 class="card-header text-uppercase">Search By City Name</h3>
+                <h3 class="card-header text-uppercase">Search By City</h3>
                 <form id="user-form" class="card-body">
-                    <label class="form-label" for="cityName">City Name</label>
-                    <input name="cityName" id="cityName" type="text" autofocus="true" class="form-input" />
+                    <label class="form-label" for="cityName"></label>
+                    <input placeholder="Enter City Name" name="cityName" id="cityName" type="text" autofocus="true"
+                        class="form-input" />
                     <button type="submit" class="btn" id="submit">Search</button>
                 </form>
             </div>
 
             <!-- TODO: Section for historyLocations, when you click on historyLocations button, that locations information replaces currentLocation  -->
             <div class="col-12 col-md-4"></div>
-            <h3 class="card-header text-uppercase"> Recently Searched </h3>
+            <h3 class="card-header text-uppercase"> Search History </h3>
             <div id="language-buttons" class="card-body">
-                <p> class = locationHistory </p>
-                <button data-language="CityName1" class="btn"> Historical City Name</button>
-             
+                <button type="submit" class="btn" id="cityNamesubmit"></button>
+
             </div>
         </div>
 
@@ -47,11 +47,7 @@
         <!-- TODO: Section for Current City -->
         <!-- City | Temp: --°F | Wind: --mph | Humidity: --% | CurrentDate-->
         <div class="card" id="current">
-            <h3 class="card-header text-uppercase"> cityName = Philadelphia - dateTime = today </h3>
-            <!-- <p id = "currentCards"> [weatherIcon]   </p>
-            <p id = "currentCards"> Temp: --°F      </p>
-            <p id = "currentCards"> Wind: --mph |   </p>
-            <p id = "currentCards"> Humidity: --%  </p> -->
+            <h3 class="card-header text-uppercase"> Current Weather</h3>
         </div>
 
 
@@ -59,19 +55,15 @@
         <!-- cards for each date with date, weather icon, temp wind and humidity -->
         <div class="card">
             <h3 class="card-header text-uppercase"> 5-Day Forecast </h3>
-            <p>[weatherIcon] | Temp: --°F | Wind: --mph | Humidity: --% |</p>
-            <p id = "days"> Day 1  </p>
-            <p id = "days"> Day 2 </p>
-            <p id = "days"> Day 3 </p>
-            <p id = "days"> Day 4 </p>
-            <p id = "days"> Day 5 </p>
+            <p id="days"> </p>
+
         </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="./assets/javascript/script.js"></script>
-        
+
         </main>
-        
+
 </body>
 
 <footer>

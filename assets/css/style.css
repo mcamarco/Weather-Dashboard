@@ -1,155 +1,22 @@
 :root {
-    --primary: white;
-    --secondary: #fb9f87;
-    --tertiary: rgb(97, 177, 188);
-    --light-dark: #8e7578;
-    --dark: black;
-    --border-radius: 0.3rem;
+  --primary: white;
+  --secondary: #fb9f87;
+  --tertiary: rgb(97, 177, 188);
+  --light-dark: #8e7578;
+  --dark: black;
+  --border-radius: 0.3rem;
 }
 
-* {
-    box-sizing: border-box;
-}
-
-body {
-    background-color: var(--primary);
-    margin: 0;
-    padding: 0;
-    font-family: 'Lora', serif;
-    color: black;
-    line-height: 1.5;
-    font-size: 16px;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: 700;
-    margin: 0;
-    color: var(--dark);
-    line-height: 1.25;
-}
-
-main {
-    margin: 20px auto;
-    width: 94%;
-}
-
-
-
-/* Buttons */
 .btn {
-    font-size: 1.3rem;
-    text-decoration: none;
-    padding: 6px 5px;
-    width: 100%;
-    display: block;
-    margin: 5px 0;
-    border-radius: var(--border-radius);
-    color: var(--primary);
-    border: none;
-    outline: none;
-    background-color: blueviolet;
-    box-shadow: 3px 3px var(--dark);
-    transform: translate(-1px, -1px);
+  border-radius: var(--border-radius);
+   background-color: var(--tertiary);
+  color: var(--primary);
+  cursor: pointer;
+  border-color: var(--tertiary);
 }
 
 .btn:hover {
-    color: var(--primary);
-    background-color: var(--tertiary);
-    transform: translate(0, 0);
-    box-shadow: 2px 2px var(--dark);
-}
-
-.btn-inline {
-    display: inline;
-}
-
-.hero {
-    padding: 3% 4%;
-    position: relative;
-    background-size: cover;
-    background-position: 50% 50%;
-    font-size: 30px;
-    background-image: url("https://images.unsplash.com/photo-1630260667842-830a17d12ec9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
-}
-
-.title {
-    color: white;
-    text-align: right;
-    flex-direction: column;
-}
-
-
-/* CARDS SECTION */
-/* TODO: fix colors and fix cards */
-.card {
-    margin: 10px;
-    padding: 10px;
-    border: 3px solid var(--dark);
-    border-radius: var(--border-radius);
-}
-
-.card-header {
-    color: var(--primary);
-    background-color: var(--dark);
-    padding: 2.5%;
-    border-radius: calc(0.18rem - 1px) calc(0.18rem - 1px) 0 0;
-}
-
-.card-body {
-    padding: 2.5%;
-}
-
-#days {
-    margin: 10px;
-    padding: 10px;
-    border: 3px solid var(--dark);
-    border-radius: var(--border-radius);
-}
-
-#currentCards {
-    margin: 10px;
-    padding: 10px;
-    border: 3px solid var(--dark);
-    border-radius: var(--border-radius);
-}
-/* 
-
-/* FORM SECTION */
-/* TODO: fix colors and adjust placement */
-.form-label,
-.form-input,
-.form-textarea {
-    display: block;
-}
-
-.form-label {
-    font-size: 1.1rem;
-    margin: 0 0 0 5px;
-}
-
-.form-input {
-    width: 100%;
-    padding: 3%;
-    margin: 5px 0;
-    font-size: 1.2rem;
-    border: 2px solid var(--light-dark);
-    border-radius: var(--border-radius);
-}
-
-
-/* FLEX CONTENT */
-.flex-row {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.flex-column {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+  background-color: var(--secondary);
+  border-color: var(--secondary);
+  transform: scale(1.1);
 }
