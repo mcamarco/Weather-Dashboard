@@ -5,7 +5,7 @@ var recentSearches = JSON.parse(localStorage.getItem('myAppData')) || [];
 console.log("cityNameSubmit")
 $("#language-buttons").on("click", ".btn", function () {
     var city = $(this).text();
-    getWeather(city);
+    getCoord(city);
 });
 $("#submit").on("click", function (e) {
     e.preventDefault();
@@ -13,35 +13,22 @@ $("#submit").on("click", function (e) {
     var city = $("#cityName").val();
     var cityNameButton = $("<button>");
     cityNameButton.attr("class", "btn");
-    cityNameButton.attr("id", "cityNamesubmit");
+    cityNameButton.removeClass("btn");
     cityNameButton.text(city);
     $("#language-buttons").prepend(cityNameButton);
     cityNameButton.on("click", function () {
-        getWeather($(this).text());
+        getSearchHistoryBtn($(this).text());
     });
 
-    getWeather(city);
-});
+    getCoord(city);
+})
 
-// append recent searches to page as buttons - on page load from local storage
-for (var i = 0; i < recentSearches.length; i++) {
-    var cityNameButton = $("<button>");
-    cityNameButton.attr("class", "btn");
-    cityNameButton.attr("id", "cityNamesubmit");
-    cityNameButton.text(recentSearches[i]);
-    $("#language-buttons").append(cityNameButton);
-
-    // Add event listener to the button
-    cityNameButton.on("click", function () {
-        getWeather($(this).text());
-    });
-}
-
-// get weather data for city
-function getWeather(city) {
+// get coordinates for city
+console.log("getCoord")
+function getCoord(city) {
     fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${APIKey}`)
         .then(function (res) {
-            return res.json();
+            return res.json()
         })
         .then(function (data) {
             var lat = data[0].lat;
@@ -51,14 +38,54 @@ function getWeather(city) {
 
             // add new city to recent searches array
             if (!recentSearches.includes(city)) {
+                // Check if city already exists
                 recentSearches.unshift(city);
                 if (recentSearches.length > 5) {
                     recentSearches.pop();
                 }
                 localStorage.setItem('myAppData', JSON.stringify(recentSearches));
             }
+
         });
 }
+
+function getSearchHistoryBtn(city) {
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${APIKey}`)
+        .then(function (res) {
+            return res.json()
+        })
+        .then(function (data) {
+            var lat = data[0].lat;
+            var lon = data[0].lon;
+            currentWeather(lat, lon);
+            forecastWeather(lat, lon);
+
+            // add new city to recent searches array
+            if (!recentSearches.includes(city)) {
+                // Check if city already exists
+                recentSearches.unshift(city);
+                if (recentSearches.length > 5) {
+                    recentSearches.pop();
+                }
+                localStorage.setItem('myAppData', JSON.stringify(recentSearches));
+            }
+
+        });
+}
+// append recent searches to page as buttons - on page load from local storage
+for (var i = 0; i < recentSearches.length; i++) {
+    var cityNameButton = $("<button>");
+    cityNameButton.attr("class", "btn");
+    cityNameButton.removeClass("btn");
+    cityNameButton.text(recentSearches[i]);
+    $("#language-buttons").append(cityNameButton);
+
+    // Add event listener to the button
+    cityNameButton.on("click", function () {
+        getCoord($(this).text());
+    });
+}
+
 
 // get current weather
 console.log("currentWeather")
@@ -92,16 +119,14 @@ function currentWeather(lat, lon) {
 console.log("forecastWeather")
 function forecastWeather(lat, lon) {
     $("#days").empty(); // Clear the #days element
-
+    console.log("fetch forecast")
     fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}&units=imperial`)
         .then(function (res) {
             return res.json();
         })
         .then(function (data) {
-            console.log(data);
             for (var i = 0; i < data.list.length; i += 8) {
 
-                // TODO: Cleanup Date Formatting
                 var dateToday = $("<h2>");
                 var date = new Date(data.list[i].dt_txt);
                 var options = { weekday: 'long', month: 'long', day: 'numeric' };
@@ -125,8 +150,7 @@ function forecastWeather(lat, lon) {
                 pHum.text("Humidity: " + data.list[i].main.humidity + " %");
                 $("#days").append(pHum);
             }
-            console.log("forecastWeather2")
-            console.log(data)
         })
 }
+
 
