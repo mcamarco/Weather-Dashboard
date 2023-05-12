@@ -26,8 +26,5 @@ Enjoy using the weather application to stay informed about the current and upcom
   
   ## Questions
   
-
-  GitHub Link: https://www.github.com/mcamarco.
-
   For additional questions, you may contact me at mickey.camarco@gmail.com!
   
