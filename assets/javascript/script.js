@@ -125,6 +125,7 @@ function forecastWeather(lat, lon) {
             return res.json();
         })
         .then(function (data) {
+            console.log(data);
             for (var i = 0; i < data.list.length; i += 8) {
 
                 var dateToday = $("<h2>");
