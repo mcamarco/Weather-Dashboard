@@ -1,157 +1,253 @@
 var APIKey = "086f9d9aa37aee06fc531999dfe497b6";
-var recentSearches = JSON.parse(localStorage.getItem('myAppData')) || [];
 
-// event listener for city name once submitted
-console.log("cityNameSubmit")
-$("#language-buttons").on("click", ".btn", function () {
-    var city = $(this).text();
-    getCoord(city);
-});
-$("#submit").on("click", function (e) {
-    e.preventDefault();
+countryCode = ['AF', 'AX', 'AL', 'DZ', 'AS', 'AD', 'AO', 'AI', 'AQ', 'AG', 'AR', 'AM', 'AW', 'AU', 'AT', 'AZ', 'BS', 'BH', 'BD', 'BB', 'BY', 'BE', 'BZ', 'BJ', 'BM', 'BT', 'BO', 'BA', 'BW', 'BV', 'BR', 'IO', 'BN', 'BG', 'BF', 'BI', 'KH', 'CM', 'CA', 'CV', 'KY', 'CF', 'TD', 'CL', 'CN', 'CX', 'CC', 'CO', 'KM', 'CG', 'CD', 'CK', 'CR', 'CI', 'HR', 'CU', 'CY', 'CZ', 'DK', 'DJ', 'DM', 'DO', 'EC', 'EG', 'SV', 'GQ', 'ER', 'EE', 'ET', 'FK', 'FO', 'FJ', 'FI', 'FR', 'GF', 'PF', 'TF', 'GA', 'GM', 'GE', 'DE', 'GH', 'GI', 'GR', 'GL', 'GD', 'GP', 'GU', 'GT', 'GG', 'GN', 'GW', 'GY', 'HT', 'HM', 'VA', 'HN', 'HK', 'HU', 'IS', 'IN', 'ID', 'IR', 'IQ', 'IE', 'IM', 'IL', 'IT', 'JM', 'JP', 'JE', 'JO', 'KZ', 'KE', 'KI', 'KR', 'KW', 'KG', 'LA', 'LV', 'LB', 'LS', 'LR', 'LY', 'LI', 'LT', 'LU', 'MO', 'MK', 'MG', 'MW', 'MY', 'MV', 'ML', 'MT', 'MH', 'MQ', 'MR', 'MU', 'YT', 'MX', 'FM', 'MD', 'MC', 'MN', 'ME', 'MS', 'MA', 'MZ', 'MM', 'NA', 'NR', 'NP', 'NL', 'AN', 'NC', 'NZ', 'NI', 'NE', 'NG', 'NU', 'NF', 'MP', 'NO', 'OM', 'PK', 'PW', 'PS', 'PA', 'PG', 'PY', 'PE', 'PH', 'PN', 'PL', 'PT', 'PR', 'QA', 'RE', 'RO', 'RU', 'RW', 'BL', 'SH', 'KN', 'LC', 'MF', 'PM', 'VC', 'WS', 'SM', 'ST', 'SA', 'SN', 'RS', 'SC', 'SL', 'SG', 'SK', 'SI', 'SB', 'SO', 'ZA', 'GS', 'ES', 'LK', 'SD', 'SR', 'SJ', 'SZ', 'SE', 'CH', 'SY', 'TW', 'TJ', 'TZ', 'TH', 'TL', 'TG', 'TK', 'TO', 'TT', 'TN', 'TR', 'TM', 'TC', 'TV', 'UG', 'UA', 'AE', 'GB', 'US', 'UM', 'UY', 'UZ', 'VU', 'VE', 'VN', 'VG', 'VI', 'WF', 'EH', 'YE', 'ZM', 'ZW']
 
-    var city = $("#cityName").val();
-    var cityNameButton = $("<button>");
-    cityNameButton.attr("class", "btn");
-    cityNameButton.removeClass("btn");
-    cityNameButton.text(city);
-    $("#language-buttons").prepend(cityNameButton);
-    cityNameButton.on("click", function () {
-        getSearchHistoryBtn($(this).text());
-    });
+var userFormEl = document.getElementById("user-form")
+var inputEl = document.getElementById("city-name")
+var citySearchTerm = document.getElementById("city")
+var historyBtns = document.querySelector(".save-buttons")
+var historyContainer = document.getElementById("search-history-container")
 
-    getCoord(city);
-})
+var tempToday = document.getElementById("temp-today")
+var windToday = document.getElementById("wind-today")
+var humidityToday = document.getElementById("humidity-today")
 
-// get coordinates for city
-console.log("getCoord")
-function getCoord(city) {
-    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${APIKey}`)
-        .then(function (res) {
-            return res.json()
-        })
-        .then(function (data) {
-            var lat = data[0].lat;
-            var lon = data[0].lon;
-            currentWeather(lat, lon);
-            forecastWeather(lat, lon);
+var dateOne = document.getElementById("day-one")
+var tempOne = document.getElementById("one-temp")
+var windOne = document.getElementById("one-wind")
+var humidityOne = document.getElementById("one-humidity")
 
-            // add new city to recent searches array
-            if (!recentSearches.includes(city)) {
-                // Check if city already exists
-                recentSearches.unshift(city);
-                if (recentSearches.length > 5) {
-                    recentSearches.pop();
-                }
-                localStorage.setItem('myAppData', JSON.stringify(recentSearches));
-            }
+var dateTwo = document.getElementById("day-two")
+var tempTwo = document.getElementById("two-temp")
+var windTwo = document.getElementById("two-wind")
+var humidityTwo = document.getElementById("two-humidity")
 
-        });
+var dateThree = document.getElementById("day-three")
+var tempThree = document.getElementById("three-temp")
+var windThree = document.getElementById("three-wind")
+var humidityThree = document.getElementById("three-humidity")
+
+var dateFour = document.getElementById("day-four")
+var tempFour = document.getElementById("four-temp")
+var windFour = document.getElementById("four-wind")
+var humidityFour = document.getElementById("four-humidity")
+
+var dateFive = document.getElementById("day-five")
+var tempFive = document.getElementById("five-temp")
+var windFive = document.getElementById("five-wind")
+var humidityFive = document.getElementById("five-humidity")
+
+var buttonArray = []
+
+//Function handles form submission
+function formSubmitHandler(event) {
+    event.preventDefault()
+    
+    if (event.target.matches(".btn")) {
+        console.log(event.target.textContent)
+        var buttonCityName = event.target.textContent.split(",")[0]
+        var buttonCountryName = event.target.textContent.split(",")[1]
+        getTodayCityWeather(buttonCityName, buttonCountryName)
+        getLonLat(buttonCityName, buttonCountryName)
+        return
+    }
+
+    var userInputArr = []
+    userInputArr.push(inputEl.value.split(","))
+    
+    var cityName = userInputArr[0][0]
+    var countryName = userInputArr[0][1].trim()
+
+    console.log(userInputArr)
+    console.log(cityName)
+    console.log(countryName)
+
+    if (countryCode.includes(countryName)) {
+        if (cityName && countryName) {
+            getTodayCityWeather(cityName, countryName)
+            getLonLat(cityName, countryName)
+            inputEl.value = ""
+
+            var buttonArray = JSON.parse(localStorage.getItem("buttonArray"))
+            if (!buttonArray) {
+                buttonArray = []
+            } 
+            buttonArray.push({cityName, countryName})
+            localStorage.setItem("buttonArray", JSON.stringify(buttonArray))
+            
+
+            var savedCityBtn = document.createElement("button")
+            savedCityBtn.textContent = cityName + ", " + countryName
+            savedCityBtn.setAttribute("class", "btn btn-secondary")
+            historyBtns.appendChild(savedCityBtn)
+
+        } else {
+            alert("Please enter a valid city name and country code")
+        }
+    }
+    console.log(buttonArray)
 }
 
-function getSearchHistoryBtn(city) {
-    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${APIKey}`)
-        .then(function (res) {
-            return res.json()
-        })
-        .then(function (data) {
-            var lat = data[0].lat;
-            var lon = data[0].lon;
-            currentWeather(lat, lon);
-            forecastWeather(lat, lon);
+//Function to get items from local storage and create buttons for them
+function searchStorage() {
+    var savedButtonArray = JSON.parse(localStorage.getItem("buttonArray"))
 
-            // add new city to recent searches array
-            if (!recentSearches.includes(city)) {
-                // Check if city already exists
-                recentSearches.unshift(city);
-                if (recentSearches.length > 5) {
-                    recentSearches.pop();
-                }
-                localStorage.setItem('myAppData', JSON.stringify(recentSearches));
-            }
+    if (!savedButtonArray) {
+        savedButtonArray = []
+    } 
 
-        });
-}
-// append recent searches to page as buttons - on page load from local storage
-for (var i = 0; i < recentSearches.length; i++) {
-    var cityNameButton = $("<button>");
-    cityNameButton.addClass("btn btn-inline"); // Add classes "btn" and "btn-inline"
-    cityNameButton.text(recentSearches[i]);
-    $("#language-buttons").append(cityNameButton);
+    for (var i = 0; i < savedButtonArray.length; i++) {
 
-    // Add event listener to the button
-    cityNameButton.on("click", function () {
-        getCoord($(this).text());
-    });
+        var savedCityName = savedButtonArray[i].cityName
+        var savedCountryName = savedButtonArray[i].countryName
+
+        var savedCityBtn = document.createElement("button")
+        savedCityBtn.textContent = savedCityName + ", " + savedCountryName
+        savedCityBtn.setAttribute("class", "btn btn-secondary")
+        historyBtns.appendChild(savedCityBtn)
+    }
 }
 
+searchStorage()
 
+//Function handles fetching weather data for today's weather
+function getTodayCityWeather(city, country) {
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "," + country + "&appid=" + APIKey
 
-// get current weather
-console.log("currentWeather")
-function currentWeather(lat, lon) {
-    $("#current").empty();
-
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${APIKey}`)
-        .then(function (res) {
-            return res.json();
-        })
-        .then(function (data) {
-            var pcityname = $("<h3>");
-            pcityname.text(data.name);
-            $("#current").append(pcityname);
-
-            var pTemp = $("<p>");
-            pTemp.text("Temperature: " + data.main.temp + " °F");
-            $("#current").append(pTemp);
-
-            var pFeelsLike = $("<p>");
-            pFeelsLike.text("Feels like: " + data.main.feels_like + " °F");
-            $("#current").append(pFeelsLike);
-
-            var pHum = $("<p>");
-            pHum.text("Humidity: " + data.main.humidity + " %");
-            $("#current").append(pHum);
-        })
-}
-
-// Forecast weather
-console.log("forecastWeather")
-function forecastWeather(lat, lon) {
-    $("#days").empty(); // Clear the #days element
-    console.log("fetch forecast")
-    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}&units=imperial`)
-        .then(function (res) {
-            return res.json();
-        })
-        .then(function (data) {
-            console.log(data);
-            for (var i = 0; i < data.list.length; i += 8) {
-
-                var dateToday = $("<h2>");
-                var date = new Date(data.list[i].dt_txt);
-                var options = { weekday: 'long', month: 'long', day: 'numeric' };
-                var formattedDate = date.toLocaleDateString(undefined, options);
-                dateToday.text(formattedDate);
-                $("#days").append(dateToday);
-
-                var forecastIcon = $("<img>").attr("src", "https://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png");
-                $("#days").append(forecastIcon);
-                console.log(data.list[i].weather[0].icon);
-
-                var pTemp = $("<p>");
-                pTemp.text("Temperature: " + data.list[i].main.temp + " °F");
-                $("#days").append(pTemp);
-
-                var pFeelsLike = $("<p>");
-                pFeelsLike.text("Feels like: " + data.list[i].main.feels_like + " °F");
-                $("#days").append(pFeelsLike);
-
-                var pHum = $("<p>");
-                pHum.text("Humidity: " + data.list[i].main.humidity + " %");
-                $("#days").append(pHum);
+    fetch(queryURL)
+        .then(function(response) {
+            if (response.ok) {
+                response.json().then(function(data) {
+                    displayTodayWeather(data, city, country)
+                    // console.log(response)
+                    console.log(data)
+                })
+            } else {
+                alert("Error " + response.statusText)
             }
         })
+        .catch(function(error) {
+            alert("Unable to connect to Weather API")
+        })
 }
 
+//Function to display today's weather on page
+function displayTodayWeather(city, searchTermCity, searchTermCountry) {
 
+    console.log(searchTermCity + ", " + searchTermCountry + dayjs().format("YYYY-MM-DD"))
+    citySearchTerm.textContent = searchTermCity + ", " + searchTermCountry + " " + dayjs().format("YYYY-MM-DD")
+
+    var tempKelvin = city.main.temp
+    var tempImperial = (((tempKelvin-273.15)*1.8)+32).toFixed(2)
+
+    var windMeterperSec = city.wind.speed
+    var windImperial = (windMeterperSec*2.237).toFixed(2)
+
+    var icon = city.weather[0].icon
+    console.log(icon)
+
+    tempToday.textContent = "Temp: " + tempImperial + "°F"
+    windToday.textContent = "Wind: " + windImperial + " MPH"
+    humidityToday.textContent = "Humidity: " + city.main.humidity + "%"
+
+    var weatherIcon = document.createElement("img")
+    weatherIcon.setAttribute("src", "https://openweathermap.org/img/wn/" + icon + "@2x.png")
+    citySearchTerm.appendChild(weatherIcon)
+}
+
+//Function handles getting latitude and longitude of city
+function getLonLat(city, country) {
+    var queryURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "," + country + "&appid=" + APIKey
+
+    fetch(queryURL)
+        .then(function(response) {
+            if (response.ok) {
+                response.json().then(function(data) {
+                    getForecastCityWeather(data)
+                })
+            } else {
+                alert("Error" + response.statusText)
+                console.log(response)
+            }
+        })
+        .catch(function(error) {
+            alert("Unable to connect to Weather API")
+        })
+}
+
+//Function handles fetching five-day forecast weather data 
+function getForecastCityWeather(city) {
+    var latitude = city[0].lat 
+    var longitude = city[0].lon 
+
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + APIKey + "&units=imperial"
+
+    fetch(queryURL)
+        .then(function(response) {
+            if (response.ok) {
+                response.json().then(function(data) {
+                    displayForecastWeather(data)
+                    console.log(data)
+                })
+            } else {
+                alert("Error" + response.statusText)
+            }
+        })
+        .catch(function(error) {
+            alert("Unable to connect to Weather API")
+        })
+
+}
+
+//Function to display 5-day forecast on page 
+function displayForecastWeather(data) {
+
+    dateOne.textContent = data.list[3].dt_txt.split(" ")[0]
+    tempOne.textContent = "Temp: " + data.list[3].main.temp + "°F"
+    windOne.textContent = "Wind: " + data.list[3].wind.speed + " MPH"
+    humidityOne.textContent = "Humidity: " + data.list[3].main.humidity + "%"
+
+    var iconOne = document.createElement("img")
+    iconOne.setAttribute("src", "https://openweathermap.org/img/wn/" + data.list[3].weather[0].icon + "@2x.png")
+    dateOne.appendChild(iconOne)
+
+    dateTwo.textContent = data.list[11].dt_txt.split(" ")[0]
+    tempTwo.textContent = "Temp: " + data.list[11].main.temp + "°F"
+    windTwo.textContent = "Wind: " + data.list[11].wind.speed + " MPH"
+    humidityTwo.textContent = "Humidity: " + data.list[11].main.humidity + "%"
+
+    var iconTwo = document.createElement("img")
+    iconTwo.setAttribute("src", "https://openweathermap.org/img/wn/" + data.list[11].weather[0].icon + "@2x.png")
+    dateTwo.appendChild(iconTwo)
+
+    dateThree.textContent = data.list[19].dt_txt.split(" ")[0]
+    tempThree.textContent = "Temp: " + data.list[19].main.temp + "°F"
+    windThree.textContent = "Wind: " + data.list[19].wind.speed + " MPH"
+    humidityThree.textContent = "Humidity: " + data.list[19].main.humidity + "%"
+
+    var iconThree = document.createElement("img")
+    iconThree.setAttribute("src", "https://openweathermap.org/img/wn/" + data.list[19].weather[0].icon + "@2x.png")
+    dateThree.appendChild(iconThree)
+
+    dateFour.textContent = data.list[27].dt_txt.split(" ")[0]
+    tempFour.textContent = "Temp: " + data.list[27].main.temp + "°F"
+    windFour.textContent = "Wind: " + data.list[27].wind.speed + " MPH"
+    humidityFour.textContent = "Humidity: " + data.list[27].main.humidity + "%"
+
+    var iconFour = document.createElement("img")
+    iconFour.setAttribute("src", "https://openweathermap.org/img/wn/" + data.list[27].weather[0].icon + "@2x.png")
+    dateFour.appendChild(iconFour)
+
+    dateFive.textContent = data.list[35].dt_txt.split(" ")[0]
+    tempFive.textContent = "Temp: " + data.list[35].main.temp + "°F"
+    windFive.textContent = "Wind: " + data.list[35].wind.speed + " MPH"
+    humidityFive.textContent = "Humidity: " + data.list[35].main.humidity + "%"
+
+    var iconFive = document.createElement("img")
+    iconFive.setAttribute("src", "https://openweathermap.org/img/wn/" + data.list[35].weather[0].icon + "@2x.png")
+    dateFive.appendChild(iconFive)
+}
+
+//Click events
+userFormEl.addEventListener("submit", formSubmitHandler)
+historyContainer.addEventListener("click", formSubmitHandler)

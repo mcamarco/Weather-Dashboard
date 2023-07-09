@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather Dashboard</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assets/css/style.css" />
-</head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<body class="flex-column min-100-vh">
-    <header class="hero">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title">Weather Dashboard</h1>
-            </div>
-        </div>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <link rel = "stylesheet" href = "./assets/css/style.css"/>
+    <title>Weather Dashboard</title>
+</head>
+<body>
+    <header class="min-vw-100 p-4 text-center bg-dark text-light">
+        <h1>Weather Dashboard</h1>
     </header>
 
     <div class="row d-flex">
@@ -25,51 +25,115 @@
         <!-- Search by city form -->
         <div class="card col-md-4 p-3">
             <div class="card-body">
-                <h3 class="card-header text-uppercase">Search By City</h3>
-                <form id="user-form" class="card-body">
-                    <label class="form-label" for="cityName"></label>
-                    <input placeholder="Enter City Name" name="cityName" id="cityName" type="text" autofocus="true"
-                        class="form-input" />
-                    <button type="submit" class="btn" id="submit"> Submit</button>
+                <h3 class="card-header fw-bold">Search By City</h3>
+                <form id="user-form" class="card-body d-grid gap-2">
+                  <input name="city-name" id="city-name" type="text" autofocus="true" class="form-input" placeholder="City, Country Code" />
+                  <button type="submit" class="btn btn-primary">Search</button>
                 </form>
             </div>
+          </div>
+
+          <!-- Today's forecast -->
+          <div class="card col-md-8 p-3">
+            <div id="city" class="card-header fs-3 fw-bold" style="background-color:rgb(82, 100, 189); color: white">City Name</div>
+            <ul class="list-group list-group-flush">
+
+              <li id="temp-today" class="list-group-item">Temp:</li>
+
+              <li id="wind-today" class="list-group-item">Wind:</li>
+
+              <li id="humidity-today" class="list-group-item">Humidity:</li>
+            </ul>
+          </div>
+
+    </div>
+
+    <div class="row">
+
+        <!-- Search history buttons go here -->
+        <div id="search-history-container" class="card col-md-4 p-3">
+            <h3 class="card-header fs-3 fw-bold">Search History:</h3>
+            <ul class="save-buttons d-grid gap-2">
+
+            </ul>
         </div>
 
-        <!-- Search History Buttons -->
-        <div class="card col-md-4 p-3">
-            <div class="card-body">
-                <h3 class="card-header text-uppercase">Search History</h3>
-                <div id="language-buttons" class="card-body"> 
-                    <!-- Existing code for the buttons goes here -->
+        <!-- 5 day forecast -->
+        <div class="card col-md-8 p-3">
+            <div id="forecast">
+                <h3 class="card-header fs-3 fw-bold">5 Day Forecast:</h3>
+                <div id="forecast-container">
+
+                    <div class="row p-3">
+                        <!-- Day one forecast -->
+                        <div  class="card col-md-2 m-1 forecast-card">
+                            <div class="card-body">
+                              <h5 id="day-one" class="card-title"></h5>
+                              <p id="one-temp" class="card-text">Temp: </p>
+                              <p id="one-wind" class="card-text">Wind: </p>
+                              <p id="one-humidity" class="card-text">Humidity: </p>
+                            </div>
+                        </div>
+    
+                        <!-- Day two forecast -->
+                        <div class="card col-md-2 m-1 forecast-card">
+                            <div class="card-body">
+                              <h5 id="day-two" class="card-title"></h5>
+                              <p id="two-temp" class="card-text">Temp: </p>
+                              <p id="two-wind" class="card-text">Wind: </p>
+                              <p id="two-humidity" class="card-text">Humidity: </p>
+                            </div>
+                        </div>
+    
+                        <!-- Day three forecast -->
+                        <div class="card col-md-2 m-1 forecast-card">
+                            <div class="card-body">
+                              <h5 id="day-three" class="card-title"></h5>
+                              <p id="three-temp" class="card-text">Temp: </p>
+                              <p id="three-wind" class="card-text">Wind: </p>
+                              <p id="three-humidity" class="card-text">Humidity: </p>
+                            </div>
+                        </div>
+    
+                        <!-- Day four forecast -->
+                        <div class="card col-md-2 m-1 forecast-card">
+                            <div class="card-body">
+                              <h5 id="day-four" class="card-title"></h5>
+                              <p id="four-temp" class="card-text">Temp: </p>
+                              <p id="four-wind" class="card-text">Wind: </p>
+                              <p id="four-humidity" class="card-text">Humidity: </p>
+                            </div>
+                        </div>
+    
+                        <!-- Day five forecast -->
+                        <div class="card col-md-2 m-1 forecast-card">
+                            <div class="card-body">
+                              <h5 id="day-five" class="card-title"></h5>
+                              <p id="five-temp" class="card-text">Temp: </p>
+                              <p id="five-wind" class="card-text">Wind: </p>
+                              <p id="five-humidity" class="card-text">Humidity: </p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
 
-        <!-- Section for Current City -->
-        <div class="card col-md-8 p-3">
-            <h3 class="card-header text-uppercase">Current Weather</h3>
-            <div id="current" class="card-body">
-                <!-- Content for current weather goes here -->
-            </div>
-        </div>
-
     </div>
 
-    <!-- Section for 5-day forecast -->
-    <div class="card col-md-8 p-3">
-        <h3 class="card-header text-uppercase">5-Day Forecast</h3>
-        <div class="card-body">
-            <p id="days"> </p>
-        </div>
-    </div>
+    <script
+    src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+    crossorigin="anonymous"
+  ></script>
+    
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"
+    ></script>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="./assets/javascript/script.js"></script>
-
 </body>
-
-<footer>
-
-</footer>
-
 </html>
