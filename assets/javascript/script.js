@@ -75,8 +75,7 @@ function getSearchHistoryBtn(city) {
 // append recent searches to page as buttons - on page load from local storage
 for (var i = 0; i < recentSearches.length; i++) {
     var cityNameButton = $("<button>");
-    cityNameButton.attr("class", "btn");
-    cityNameButton.removeClass("btn");
+    cityNameButton.addClass("btn btn-inline"); // Add classes "btn" and "btn-inline"
     cityNameButton.text(recentSearches[i]);
     $("#language-buttons").append(cityNameButton);
 
@@ -85,6 +84,7 @@ for (var i = 0; i < recentSearches.length; i++) {
         getCoord($(this).text());
     });
 }
+
 
 
 // get current weather

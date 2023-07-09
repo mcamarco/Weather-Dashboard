@@ -5,6 +5,7 @@
   --light-dark: #8e7578;
   --dark: black;
   --border-radius: 0.3rem;
+  --border-style: solid;
 }
 
 * {
@@ -27,7 +28,6 @@ h1 {
   line-height: 1.25;
 }
 
-
 h2,
 h3,
 h4,
@@ -45,20 +45,18 @@ main {
 }
 
 /* Buttons */
-#btn {
+.btn {
   font-size: 1.3rem;
   text-decoration: none;
   padding: 6px 5px;
   width: 100%;
-  display: block;
-  margin: 5px 0;
+  /* display: block; */
+  /* margin: 5px 0; */
   border-radius: var(--border-radius);
   color: var(--primary);
-  border: none;
-  outline: none;
   background-color: var(--tertiary);
   box-shadow: 3px 3px var(--dark);
-  transform: translate(-1px, -1px);
+  /* transform: translate(-1px, -1px); */
 }
 
 .btn:hover {
@@ -84,8 +82,9 @@ main {
 .card {
   margin: 20px auto;
   width: 94%;
+  border-style: var(--border-style);
   border-radius: var(--border-radius);
-  box-shadow: 3px 3px var(--light-dark);
+  /* box-shadow: 3px 3px var(--light-dark); */
   padding: 20px;
 }
 
@@ -129,5 +128,5 @@ main {
 }
 
 .justify-center {
-  justify-content:
+  justify-content: center;
 }
